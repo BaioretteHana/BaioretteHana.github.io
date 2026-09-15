@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mugdha Meda — Portfolio</title>
+<meta name="description" content="Robotics, dynamics and controls projects by Mugdha Meda — MS Mechanical Engineering, Carnegie Mellon University.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f6f3; --surface:#ffffff; --surface-2:#fbfbf9;
+    --ink:#181a1f; --muted:#5c6472; --faint:#8a91a0;
+    --line:#e7e6e0; --line-2:#efeee9;
+    --accent:#0f7a70; --accent-ink:#0a5850; --accent-wash:#e6f2f0;
+    --shadow:0 1px 2px rgba(20,22,28,.04),0 8px 24px rgba(20,22,28,.06);
+    --shadow-lg:0 2px 4px rgba(20,22,28,.05),0 18px 44px rgba(20,22,28,.12);
+    --radius:15px;
+  }
+  :root:not([data-theme="light"]){ }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d0f13; --surface:#15181e; --surface-2:#121419;
+      --ink:#e9eaee; --muted:#9aa1ad; --faint:#6b7280;
+      --line:#242832; --line-2:#1d212a;
+      --accent:#4fd1c5; --accent-ink:#7fe3da; --accent-wash:#132a28;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 26px rgba(0,0,0,.35);
+      --shadow-lg:0 2px 6px rgba(0,0,0,.4),0 22px 48px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d0f13; --surface:#15181e; --surface-2:#121419;
+    --ink:#e9eaee; --muted:#9aa1ad; --faint:#6b7280;
+    --line:#242832; --line-2:#1d212a;
+    --accent:#4fd1c5; --accent-ink:#7fe3da; --accent-wash:#132a28;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 26px rgba(0,0,0,.35);
+    --shadow-lg:0 2px 6px rgba(0,0,0,.4),0 22px 48px rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .mono{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+  .wrap{max-width:1140px;margin:0 auto;padding-inline:24px}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb,var(--bg) 82%,transparent);
+    backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
+  }
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{font-weight:600;letter-spacing:-.01em;font-size:15px}
+  .brand b{color:var(--accent)}
+  .nav-links{display:flex;gap:22px;align-items:center}
+  .nav-links a{font-size:13.5px;color:var(--muted);transition:color .15s}
+  .nav-links a:hover{color:var(--ink)}
+  .theme-btn{
+    background:none;border:1px solid var(--line);color:var(--muted);
+    width:34px;height:34px;border-radius:9px;cursor:pointer;font-size:15px;
+    display:grid;place-items:center;transition:.15s;
+  }
+  .theme-btn:hover{color:var(--ink);border-color:var(--faint)}
+  @media(max-width:620px){.nav-links a:not(.resume-link){display:none}}
+
+  /* ---------- hero ---------- */
+  header.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  header.hero::before{
+    content:"";position:absolute;inset:0;z-index:0;
+    background-image:radial-gradient(currentColor 1px,transparent 1.4px);
+    background-size:26px 26px;color:var(--line);opacity:.6;
+    -webkit-mask-image:radial-gradient(ellipse 80% 70% at 30% 0%,#000,transparent 75%);
+            mask-image:radial-gradient(ellipse 80% 70% at 30% 0%,#000,transparent 75%);
+  }
+  .hero-in{position:relative;z-index:1;padding-block:76px 64px}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--accent-ink);background:var(--accent-wash);
+    border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);
+    padding:5px 12px;border-radius:999px;margin-bottom:22px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+  h1{
+    font-family:Fraunces,Georgia,serif;font-weight:600;
+    font-size:clamp(2.4rem,6vw,4rem);line-height:1.02;letter-spacing:-.02em;margin:0 0 18px;
+  }
+  .lede{font-size:clamp(1.02rem,2vw,1.22rem);color:var(--muted);max-width:640px;margin:0 0 28px}
+  .lede b{color:var(--ink);font-weight:600}
+  .contact{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{
+    display:inline-flex;align-items:center;gap:7px;font-size:13.5px;
+    padding:8px 14px;border-radius:10px;border:1px solid var(--line);
+    background:var(--surface);color:var(--muted);transition:.16s;box-shadow:var(--shadow)
+  }
+  .chip:hover{color:var(--ink);border-color:var(--accent);transform:translateY(-1px)}
+  .chip svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.7}
+  .facts{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:30px;font-size:13.5px;color:var(--faint)}
+  .facts span{display:inline-flex;gap:8px;align-items:baseline}
+  .facts b{color:var(--ink);font-weight:600}
+
+  /* ---------- sections ---------- */
+  section{padding-block:60px}
+  .sec-head{margin-bottom:34px}
+  .sec-label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:500}
+  .sec-head h2{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(1.5rem,3.4vw,2.05rem);letter-spacing:-.02em;margin:.35em 0 .2em}
+  .sec-head p{color:var(--muted);margin:0;max-width:600px;font-size:15px}
+
+  /* ---------- featured ---------- */
+  .featured{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:840px){.featured{grid-template-columns:1fr}}
+  .fcard{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:.2s
+  }
+  .fcard:hover{box-shadow:var(--shadow-lg);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+  .fmedia{position:relative;background:#0b0d10;display:grid;place-items:center;min-height:230px;overflow:hidden}
+  .fmedia video{width:100%;max-height:430px;display:block;background:#0b0d10}
+  .fmedia img{width:100%;height:100%;object-fit:cover;display:block}
+  .fcard .body{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+  .fcard h3{font-size:1.24rem;margin:0 0 4px;letter-spacing:-.01em}
+  .meta{font-size:12.5px;color:var(--faint);margin-bottom:12px}
+  .meta .sep{opacity:.5;padding:0 6px}
+  .fcard p.desc,.pcard p.desc{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}
+  .tag{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted);border:1px solid var(--line-2);background:var(--surface-2);padding:4px 9px;border-radius:7px}
+  .links{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line-2)}
+  .lnk{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--accent-ink);font-weight:500}
+  .lnk svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
+  .lnk:hover{text-decoration:underline}
+  .badge{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:var(--accent-ink);background:var(--accent-wash);border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);padding:3px 9px;border-radius:999px;vertical-align:middle;margin-left:6px}
+
+  /* placeholder media */
+  .ph{width:100%;height:100%;min-height:230px;position:relative;display:block}
+  .ph svg{position:absolute;inset:0;width:100%;height:100%}
+  .ph .note{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-family:"JetBrains Mono",monospace;font-size:11px;color:rgba(255,255,255,.72);letter-spacing:.03em}
+
+  /* ---------- grid ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+  .pcard{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:.2s
+  }
+  .pcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+  .pmedia{aspect-ratio:16/10;overflow:hidden;background:var(--surface-2);border-bottom:1px solid var(--line-2)}
+  .pmedia img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+  .pcard:hover .pmedia img{transform:scale(1.04)}
+  .pcard .body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
+  .pcard h3{font-size:1.06rem;margin:0 0 4px;letter-spacing:-.01em;line-height:1.25}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding-block:44px 56px;margin-top:20px}
+  .foot-in{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
+  footer p{margin:0;color:var(--faint);font-size:13.5px}
+  .foot-links{display:flex;gap:18px}
+  .foot-links a{color:var(--muted);font-size:13.5px}
+  .foot-links a:hover{color:var(--accent-ink)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="#top" class="brand">Mugdha <b>Meda</b></a>
+    <div class="nav-links">
+      <a href="#featured">Featured</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a class="resume-link" href="assets/reports/" style="display:none"></a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme" title="Toggle light / dark">◑</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-in">
+    <span class="eyebrow"><span class="dot"></span> Robotics · Dynamics · Controls</span>
+    <h1>Mugdha Meda</h1>
+    <p class="lede">I build and control machines that move — <b>legged &amp; aerial robots, autonomous vehicles, and the dynamics models behind them.</b> MS Mechanical Engineering (Robotics, Dynamics &amp; Controls) at Carnegie Mellon.</p>
+    <div class="contact">
+      <a class="chip" href="mailto:mmeda@andrew.cmu.edu">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> mmeda@andrew.cmu.edu</a>
+      <a class="chip" href="https://linkedin.com/in/mugdha-meda" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 17v-7"/></svg> linkedin.com/in/mugdha-meda</a>
+      <a class="chip" href="https://github.com/BaioretteHana" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-4 1.5-4-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6 3.3 4.9 3.6 4.9 3.6a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 3.5 10c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V22"/></svg> github.com/BaioretteHana</a>
+    </div>
+    <div class="facts">
+      <span><b>M.S.</b> Carnegie Mellon University · 2027</span>
+      <span><b>B.Tech</b> IIT Madras · Mechanical, 9.04/10</span>
+      <span><b>Patent</b> IN 202341083243</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ===================== FEATURED ===================== -->
+  <section id="featured">
+    <div class="sec-head">
+      <span class="sec-label">01 — Featured</span>
+      <h2>Things I built and made move</h2>
+      <p>Hardware I designed, wrote firmware for, and closed the loop on.</p>
+    </div>
+
+    <div class="featured">
+
+      <!-- Hopcopter -->
+      <article class="fcard">
+        <div class="fmedia">
+          <video controls preload="metadata" playsinline poster="assets/img/hopcopter.jpg">
+            <source src="assets/video/hopcopter.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="body">
+          <h3>Passive-Legged Hopping Quadcopter</h3>
+          <div class="meta">Graduate research · Microrobotics Lab, CMU <span class="sep">·</span> 2026–present</div>
+          <p class="desc">A 35 g quadcopter with springy passive legs that <em>hops</em> rather than only flies. I built a hybrid stance–flight dynamics model and a predictive controller that stabilizes continuous hopping to <b>0.1 m RMSE</b>, plus an encoder-free stance/swing MLP classifier at <b>0.93+ balanced accuracy</b> so the loop closes on onboard hardware alone.</p>
+          <div class="tags">
+            <span class="tag">state estimation</span><span class="tag">predictive control</span><span class="tag">off-policy RL</span><span class="tag">embedded</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- POV cube -->
+      <article class="fcard">
+        <div class="fmedia">
+          <video controls preload="metadata" playsinline>
+            <source src="assets/video/voldisp1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="body">
+          <h3>Small Volumetric Display</h3>
+          <div class="meta">Personal build · firmware + geometry <span class="sep">·</span> 2025</div>
+          <p class="desc">A 16×9 LED panel on a wirelessly-powered spinning rotor that paints true 3D shapes in mid-air through persistence of vision. Hall-sensor phase lock, a <b>450 µs enable-bitmap redraw</b> trick to fit the I²C timing budget at 1200 rpm, and procedural water/shape physics — all on a XIAO nRF52840.</p>
+          <div class="tags">
+            <span class="tag">embedded firmware</span><span class="tag">nRF52840</span><span class="tag">POV</span><span class="tag">I²C</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section id="projects">
+    <div class="sec-head">
+      <span class="sec-label">02 — Selected Projects</span>
+      <h2>Autonomy, dynamics &amp; mechanism design</h2>
+      <p>Control stacks, multibody models, and mechanisms — from Mars-rover suspensions to spacecraft attitude control.</p>
+    </div>
+
+    <div class="grid">
+
+      <!-- AV control stack -->
+      <article class="pcard">
+        <div class="pmedia">
+          <div class="ph" style="min-height:0;height:100%">
+            <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Path planning and control">
+              <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14302e"/><stop offset="1" stop-color="#0b1416"/></linearGradient></defs>
+              <rect width="400" height="250" fill="url(#g2)"/>
+              <g stroke="#26403f" stroke-width="1">
+                <path d="M0 50h400M0 100h400M0 150h400M0 200h400M50 0v250M100 0v250M150 0v250M200 0v250M250 0v250M300 0v250M350 0v250"/>
+              </g>
+              <path d="M30 210 C120 210 90 90 200 100 S320 60 375 40" fill="none" stroke="#4fd1c5" stroke-width="2.4" stroke-dasharray="2 7" stroke-linecap="round"/>
+              <g fill="#7fe3da">
+                <circle cx="30" cy="210" r="4"/><circle cx="130" cy="150" r="4"/><circle cx="200" cy="100" r="4"/><circle cx="290" cy="72" r="4"/><circle cx="375" cy="40" r="4"/>
+              </g>
+              <g transform="translate(30,210)"><rect x="-9" y="-6" width="18" height="12" rx="2.5" fill="#e9eaee"/></g>
+            </svg>
+          </div>
+        </div>
+        <div class="body">
+          <h3>Full-Stack Autonomous Vehicle Control</h3>
+          <div class="meta">Modern Control Theory · CMU <span class="sep">·</span> 2025</div>
+          <p class="desc">PID, full-state feedback and <b>LQR</b> lateral/longitudinal controllers on a linearized bicycle model, cutting lap time and tracking error in a Webots closed-loop sim — then closing the loop without default sensing via <b>EKF-SLAM</b> localization and <b>A*</b> planning.</p>
+          <div class="tags"><span class="tag">LQR</span><span class="tag">EKF-SLAM</span><span class="tag">A*</span><span class="tag">Webots</span></div>
+        </div>
+      </article>
+
+      <!-- IGVC Vikram -->
+      <article class="pcard">
+        <div class="pmedia"><img src="assets/img/igvc.jpg" alt="Autonomous ground vehicle Vikram CAD render" loading="lazy"></div>
+        <div class="body">
+          <h3>Autonomous Ground Vehicle “Vikram” <span class="badge">🏆 1st, IGVC AutoNav</span></h3>
+          <div class="meta">Mechanical Lead · Team Abhiyaan, IIT Madras <span class="sep">·</span> 2022–23</div>
+          <p class="desc">Led a 5-engineer subteam on a $2K+ budget for the international IGVC. Owned design, fabrication and assembly, developed wishbone suspension that <b>cut shock amplitudes 55%</b>, and built a steer-by-wire module with mapped steer control.</p>
+          <div class="tags"><span class="tag">vehicle design</span><span class="tag">suspension</span><span class="tag">steer-by-wire</span></div>
+          <div class="links">
+            <a class="lnk" href="assets/reports/igvc-vikram-design-report.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg> Design report</a>
+            <a class="lnk" href="assets/reports/times-of-india-driverless.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M17 7H9M17 7v8"/></svg> Press</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Rover suspension patent -->
+      <article class="pcard">
+        <div class="pmedia"><img src="assets/img/rover.jpg" alt="Double-lambda bogie rover suspension linkage" loading="lazy"></div>
+        <div class="body">
+          <h3>Variable Ride-Height Rover Suspension <span class="badge">Patent</span></h3>
+          <div class="meta">Adaptive Martian Rover Platform <span class="sep">·</span> IN&nbsp;202341083243</div>
+          <p class="desc">An actuated suspension that shifts rover centre-of-gravity in motion for <b>+50% ground clearance</b> and <b>+30% gradeability</b> vs. standard Mars rovers, with a Chebyshev-linkage articulation system that eliminates bogie overturning.</p>
+          <div class="tags"><span class="tag">mechanism design</span><span class="tag">CAD</span><span class="tag">FEA</span></div>
+          <div class="links">
+            <a class="lnk" href="assets/reports/martian-rover-suspension.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg> Presentation</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Helicopter rotor dynamics -->
+      <article class="pcard">
+        <div class="pmedia"><img src="assets/img/heli.jpg" alt="Helicopter rotor and swashplate ADAMS multibody model" loading="lazy"></div>
+        <div class="body">
+          <h3>Helicopter Rotor Dynamics</h3>
+          <div class="meta">B.Tech Thesis · IIT Madras <span class="sep">·</span> 2025</div>
+          <p class="desc">A high-fidelity <b>ADAMS/View</b> multibody model of helicopter blade &amp; swashplate dynamics capturing collective and cyclic pitch control and blade-flap response under varying aerodynamic loads — validated analytically against MATLAB ODE solutions.</p>
+          <div class="tags"><span class="tag">multibody dynamics</span><span class="tag">MSC ADAMS</span><span class="tag">aeroelasticity</span></div>
+          <div class="links">
+            <a class="lnk" href="assets/reports/helicopter-rotor-dynamics-thesis.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg> Thesis</a>
+            <a class="lnk" href="assets/reports/helicopter-rotor-dynamics-poster.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg> Poster</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Thryv internship -->
+      <article class="pcard">
+        <div class="pmedia"><img src="assets/img/thryv.jpg" alt="Wheelchair exercise rig simulated in Gazebo" loading="lazy"></div>
+        <div class="body">
+          <h3>Adaptive Exercise Equipment R&amp;D</h3>
+          <div class="meta">R&amp;D Intern · Thryv Mobility (startup) <span class="sep">·</span> Summer 2024</div>
+          <p class="desc">VESC brake-current control that modulates motor torque with joint position, velocity and acceleration for programmable strength-training resistance — plus a hardware-in-the-loop rig (ESP32 + <b>micro-ROS</b> → ROS2/Gazebo) to validate controllers before hardware trials.</p>
+          <div class="tags"><span class="tag">motor control</span><span class="tag">micro-ROS</span><span class="tag">HIL sim</span></div>
+          <div class="links">
+            <a class="lnk" href="assets/reports/thryv-mobility-internship.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg> Internship report</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Spacecraft attitude -->
+      <article class="pcard">
+        <div class="pmedia"><img src="assets/img/spacecraft.jpg" alt="Satellite attitude Euler axis diagram" loading="lazy" style="object-fit:contain;background:#f3f4f2"></div>
+        <div class="body">
+          <h3>Spacecraft Attitude Control (SDRE)</h3>
+          <div class="meta">Dynamics &amp; Control of Spacecraft · IIT Madras</div>
+          <p class="desc">A <b>State-Dependent Riccati Equation</b> attitude controller with satellite kinematics modeled by Modified Rodrigues Parameters. Pointwise-stable gains interpolated from MATLAB and validated across quadratic performance-index cases.</p>
+          <div class="tags"><span class="tag">nonlinear control</span><span class="tag">SDRE</span><span class="tag">MRP</span></div>
+          <div class="links">
+            <a class="lnk" href="assets/reports/spacecraft-attitude-sdre.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg> Report</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- MCL -->
+      <article class="pcard">
+        <div class="pmedia"><img src="assets/img/mcl.jpg" alt="Monte Carlo localization particle convergence" loading="lazy" style="object-fit:contain;background:#fff"></div>
+        <div class="body">
+          <h3>Parallel Monte Carlo Localization</h3>
+          <div class="meta">Parallel Scientific Computing · CMU</div>
+          <p class="desc">A particle-filter localizer for mobile robots parallelized with <b>OpenMP</b> and OpenACC — reaching ~<b>55% speedup</b> while converging a global-uncertainty particle cloud onto the true robot pose over successive iterations.</p>
+          <div class="tags"><span class="tag">particle filter</span><span class="tag">OpenMP</span><span class="tag">OpenACC</span></div>
+          <div class="links">
+            <a class="lnk" href="assets/reports/monte-carlo-localization.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg> Report</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Jansen linkage -->
+      <article class="pcard">
+        <div class="pmedia"><img src="assets/img/jansen.jpg" alt="Jansen linkage synthesis and foot-path trace" loading="lazy" style="object-fit:contain;background:#fff"></div>
+        <div class="body">
+          <h3>Jansen Linkage — Synthesis &amp; Analysis</h3>
+          <div class="meta">Theory of Mechanisms · IIT Madras</div>
+          <p class="desc">Four-position motion-generation synthesis of a Jansen walking leg via <b>Burmester theory</b>, with full kinematic and dynamic analysis and ADAMS verification of the gait, shaking forces and required input torque.</p>
+          <div class="tags"><span class="tag">kinematic synthesis</span><span class="tag">Burmester</span><span class="tag">ADAMS</span></div>
+          <div class="links">
+            <a class="lnk" href="assets/reports/jansen-linkage.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg> Report</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about">
+    <div class="sec-head">
+      <span class="sec-label">03 — About</span>
+      <h2>Mechanical engineer, controls at the core</h2>
+    </div>
+    <p style="max-width:680px;color:var(--muted);font-size:15.5px;margin:0">
+      I’m a Master’s student in Mechanical Engineering at Carnegie Mellon (Robotics, Dynamics &amp; Controls), currently a graduate researcher in the Microrobotics Lab working on legged and aerial robot control at the centimetre scale. My background spans model-based and learned control, state estimation, multibody dynamics, and hands-on mechanism design and fabrication — I like problems that live where the model meets the hardware.
+      <br><br>
+      <b style="color:var(--ink);font-weight:600">Toolbox:</b> C/C++, Python, MATLAB/Simulink, ROS2, Arduino · ADAMS, Ansys, ABAQUS, Webots, Gazebo · Onshape, SolidWorks, Fusion 360.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <p>© <span id="yr"></span> Mugdha Meda · Pittsburgh, PA</p>
+    <div class="foot-links">
+      <a href="mailto:mmeda@andrew.cmu.edu">Email</a>
+      <a href="https://linkedin.com/in/mugdha-meda" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/BaioretteHana" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // theme toggle (persists per browser; falls back gracefully)
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('themeBtn');
+    try{var s=localStorage.getItem('theme'); if(s)root.setAttribute('data-theme',s);}catch(e){}
+    function cur(){var a=root.getAttribute('data-theme'); if(a)return a; return matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
+    btn.addEventListener('click',function(){
+      var n=cur()==='dark'?'light':'dark'; root.setAttribute('data-theme',n);
+      try{localStorage.setItem('theme',n);}catch(e){}
+    });
+  })();
+  document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+
+</body>
+</html>
