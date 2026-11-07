@@ -105,14 +105,21 @@
 
   /* intro under hero */
   .intro{padding-block:40px 8px}
-  /* square profile picture (separate from the hero band).
-     Swap assets/img/profile.jpeg to change it; it stays cropped to a square. */
+  /* profile picture (separate from the hero band).
+     - Swap assets/img/profile.jpeg to change the photo.
+     - ZOOM:  change --zoom below. Higher = zoom IN on the face,
+              lower = zoom OUT (1.0 shows the whole photo).
+     - FRAME SIZE / SHAPE:  change width / height on .avatar. */
   .avatar{
-    float:right;width:240px;height:280px;border-radius:14px;object-fit:cover;
+    --zoom:1.3;
+    float:right;width:240px;height:280px;border-radius:14px;overflow:hidden;
     margin:0 0 18px 30px;border:4px solid #fff;box-shadow:0 4px 18px rgba(0,0,0,.16);
     background:var(--strip);
   }
-  @media (max-width:560px){ .avatar{width:200px;height:200px;margin:0 0 14px 18px} }
+  .avatar img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transform:scale(var(--zoom));transform-origin:center;
+  }
   .intro p{font-size:clamp(1.02rem,1.8vw,1.18rem);color:var(--muted);max-width:720px;margin:0 0 18px}
   .intro p b{color:var(--ink);font-weight:600}
   .contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
@@ -265,7 +272,7 @@
     <!-- [EDIT: INTRO] -->
     <div class="wrap intro">
       <!-- square profile picture (swap assets/img/profile.jpeg) -->
-      <img class="avatar" src="assets/img/profile.jpeg" alt="Mugdha Meda" width="240" height="240">
+      <div class="avatar"><img src="assets/img/profile.jpeg" alt="Mugdha Meda"></div>
       <p>I am a Master's student in Mechanical Engineering- Research at Carnegie Mellon with a focus on Dynamics and Controls. My background spans model-based and learned control, state estimation, multibody dynamics, and much mechanism design and fabrication.</p>
       <p><b>Toolbox:</b> C/C++, Python, MATLAB/Simulink, ROS2, Arduino, ADAMS, Ansys, ABAQUS, Webots, Gazebo, Onshape, SolidWorks, Fusion 360.</p>
       <!-- [EDIT: LINKS] contact chips -->
