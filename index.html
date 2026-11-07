@@ -105,6 +105,14 @@
 
   /* intro under hero */
   .intro{padding-block:40px 8px}
+  /* circular profile picture (separate from the hero band).
+     Swap assets/img/profile.jpg to change it; it stays cropped to a circle. */
+  .avatar{
+    float:right;width:140px;height:140px;border-radius:50%;object-fit:cover;
+    margin:0 0 18px 28px;border:4px solid #fff;box-shadow:0 4px 18px rgba(0,0,0,.16);
+    background:var(--strip);
+  }
+  @media (max-width:560px){ .avatar{width:112px;height:112px;margin:0 0 14px 18px} }
   .intro p{font-size:clamp(1.02rem,1.8vw,1.18rem);color:var(--muted);max-width:720px;margin:0 0 18px}
   .intro p b{color:var(--ink);font-weight:600}
   .contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
@@ -256,6 +264,8 @@
 
     <!-- [EDIT: INTRO] -->
     <div class="wrap intro">
+      <!-- circular profile picture (placeholder: swap assets/img/profile.jpg) -->
+      <img class="avatar" src="assets/img/profile.jpg" alt="Mugdha Meda" width="140" height="140">
       <p>I am a Master's student in Mechanical Engineering- Research at Carnegie Mellon with a focus on Dynamics and Controls. My background spans model-based and learned control, state estimation, multibody dynamics, and much mechanism design and fabrication.</p>
       <p><b>Toolbox:</b> C/C++, Python, MATLAB/Simulink, ROS2, Arduino, ADAMS, Ansys, ABAQUS, Webots, Gazebo, Onshape, SolidWorks, Fusion 360.</p>
       <!-- [EDIT: LINKS] contact chips -->
